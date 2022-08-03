@@ -1,12 +1,11 @@
-package src.Runnables;
+package src.core;
 
-import src.Config.Connection;
+import src.config.Connection;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.util.Objects;
 
 public class GetChampionsMastery {

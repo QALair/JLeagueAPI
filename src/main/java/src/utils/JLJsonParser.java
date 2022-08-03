@@ -1,14 +1,20 @@
 package src.utils;
 
 
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 import java.io.InputStream;
+import java.io.InputStreamReader;
 
-public class JsonParser {
+public class JLJsonParser {
 
-    public static String parseJson(InputStream streamObj){
-        JsonObject rootobj = root.getAsJsonObject(); //May be an array, may be an object.
-        String zipcode = rootobj.get("zip_code").getAsString(); //just grab the zipcode
+    public String parseJson(InputStream streamObj, String elementToParse){
+        JsonParser jsonParser = new JsonParser();
+        JsonElement jElement = jsonParser.parse(new InputStreamReader((InputStream) streamObj));
+        JsonObject rootobj = jElement.getAsJsonObject();
+        String parsedElement = rootobj.get(elementToParse).getAsString();
+        return parsedElement;
     }
 }

@@ -1,7 +1,6 @@
 package src;
 
-import src.Runnables.GetChampionsMastery;
-import src.Runnables.GetEncryptedUID;
+import src.core.GetChampionsMastery;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -12,7 +11,7 @@ public class JLeagueAPI {
         String choice;
         String summonerName;
 
-        Scanner sc= new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
 
         System.out.println("Bem vindo ao JLeague API");
         System.out.println("Selecione o que deseja fazer:");

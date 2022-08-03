@@ -1,5 +1,5 @@
 
-package src.Utils;
+package src.utils;
 
 import javax.annotation.processing.Generated;
 

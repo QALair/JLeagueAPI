@@ -1,7 +1,8 @@
-package src.Runnables;
+package src.core;
 
 import org.json.*;
-import src.Config.Connection;
+import src.config.Connection;
+import src.utils.JLJsonParser;
 
 import java.io.*;
 import java.net.HttpURLConnection;
@@ -29,8 +30,6 @@ public class GetEncryptedUID {
 
     public String getEncryptedUIDBySumName(String SumName) throws IOException {
         String response;
-        BufferedInputStream responseBuf;
-        String responseMessage = null;
 
         connection.MountRequiredConnectionConfiguration("/summoner/v4/summoners/by-name/"+SumName);
         HttpURLConnection con = (HttpURLConnection) connection.getUrl().openConnection();
@@ -40,18 +39,8 @@ public class GetEncryptedUID {
         response = con.getResponseMessage();
 
         if (Objects.equals(response, "OK")){
-            responseBuf = new BufferedInputStream(con.getInputStream());
-
-            ByteArrayOutputStream bArrayStream = new ByteArrayOutputStream();
-            int responseReader = responseBuf.read();
-            while(responseReader != -1) {
-                bArrayStream.write((byte) responseReader);
-                responseReader = responseBuf.read();
-            }
-            responseMessage = bArrayStream.toString();
-
-            JSONObject jsonResp = new JSONObject(responseMessage);
-            EncryptedUid = jsonResp.getString("id");
+            JLJsonParser jparse = new JLJsonParser();
+            EncryptedUid = jparse.parseJson(con.getInputStream(),"id");
         }
         return EncryptedUid;
     }

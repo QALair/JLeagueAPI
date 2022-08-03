@@ -1,4 +1,4 @@
-package src.Utils;
+package src.utils;
 
 import lombok.Data;
 
